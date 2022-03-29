@@ -102,7 +102,7 @@ class WallServiceTest {
         )
             val result = WallService.update(update)
 
-        result == false
+        result == false1
     }
 
 }
