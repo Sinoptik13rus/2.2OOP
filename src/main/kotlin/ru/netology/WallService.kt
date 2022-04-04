@@ -13,45 +13,35 @@ object WallService {
         return posts.last()
     }
 
-    fun likeById(id: Int) {
-        for((index, post) in posts.withIndex()) {
-            if (post.id == id) {
-                posts[index] = post.copy(likes = post.likes + 1)
-            }
-        }
-    }
-
     fun update(post: Post): Boolean {
-        var i = 0
         for (postArr in posts) {
             if (post.id == postArr.id) {
-                postArr.id = post.id
-                postArr.ownerId = post.ownerId
-                postArr.createdBy = post.createdBy
-                postArr.text = post.text
-                postArr.replyOwnerId = post.replyOwnerId
-                postArr.replyPostId = post.replyPostId
-                postArr.friendsOnly = post.friendsOnly
-                postArr.comments = post.comments
-                postArr.copyright = post.copyright
-                postArr.likes = post.likes
-                postArr.reposts = post.reposts
-                postArr.views = post.views
-                postArr.postType = post.postType
-                postArr.signerId = post.signerId
-                postArr.canPin = post.canPin
-                postArr.canDelete = post.canDelete
-                postArr.canEdit = post.canEdit
-                postArr.isPinned = post.isPinned
-                postArr.markedAsAds = post.markedAsAds
-                postArr.ifFavorite = post.ifFavorite
-                postArr.donut = post.donut
-                postArr.postponedId = post.postponedId
-
-                posts[i] = postArr
+                val newPost: Post = postArr.copy(
+                    ownerId = post.ownerId,
+                    createdBy = post.createdBy,
+                    text = post.text,
+                    replyOwnerId = post.replyOwnerId,
+                    replyPostId = post.replyPostId,
+                    friendsOnly = post.friendsOnly,
+                    comments = post.comments,
+                    copyright = post.copyright,
+                    likes = post.likes,
+                    reposts = post.reposts,
+                    views = post.views,
+                    postType = post.postType,
+                    signerId = post.signerId,
+                    canPin = post.canPin,
+                    canDelete = post.canDelete,
+                    canEdit = post.canEdit,
+                    isPinned = post.isPinned,
+                    markedAsAds = post.markedAsAds,
+                    ifFavorite = post.ifFavorite,
+                    donut = post.donut,
+                    postponedId = post.postponedId
+                )
+                posts += newPost
                 return true
             }
-            i += 1
         }
         return false
     }
